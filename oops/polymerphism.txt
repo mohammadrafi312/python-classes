@@ -1,0 +1,254 @@
+# Method Overriding vs Method Overloading
+
+| Feature               | Method Overriding      | Method Overloading      |
+| --------------------- | ---------------------- | ----------------------- |
+| Inheritance Required? | ✅ Yes                  | ❌ No                    |
+| Method Name           | Same                   | Same                    |
+| Parameters            | Same                   | Different               |
+| Occurs In             | Parent & Child Classes | Same Class              |
+| Python Support        | ✅ Yes                  | ⚠️ Not true overloading |
+
+---
+
+# 1. Method Overriding
+
+A child class provides its own version of a parent class method.
+
+### Example
+
+```python id="k4v8m2"
+class Animal:
+
+    def sound(self):
+        print("Animal Sound")
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Bark")
+
+d = Dog()
+d.sound()
+```
+
+Output:
+
+```text id="m1x7q5"
+Bark
+```
+
+### What Happened?
+
+```text id="x8z2r4"
+Animal → sound()
+
+Dog → sound()
+```
+
+The child method **overrides** the parent method.
+
+---
+
+# Using `super()`
+
+```python id="t5n9c3"
+class Animal:
+
+    def sound(self):
+        print("Animal Sound")
+
+class Dog(Animal):
+
+    def sound(self):
+        super().sound()
+        print("Bark")
+
+d = Dog()
+d.sound()
+```
+
+Output:
+
+```text id="v7k1m8"
+Animal Sound
+Bark
+```
+
+---
+
+# 2. Method Overloading
+
+Same method name with different parameters.
+
+### Java Example
+
+```java id="p2r6t9"
+class Math {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+```
+
+This is method overloading.
+
+---
+
+# Does Python Support It?
+
+❌ No, not like Java.
+
+### Example
+
+```python id="q4w8e1"
+class Math:
+
+    def add(self, a, b):
+        print(a + b)
+
+    def add(self, a, b, c):
+        print(a + b + c)
+```
+
+Python keeps only the last method.
+
+```python id="z7x3c5"
+m = Math()
+
+m.add(1, 2)
+```
+
+Output:
+
+```text id="n6v2b9"
+TypeError
+```
+
+---
+
+# Python Alternative
+
+Use default arguments.
+
+```python id="f8k4m1"
+class Math:
+
+    def add(self, a, b, c=0):
+        print(a + b + c)
+
+m = Math()
+
+m.add(10, 20)
+m.add(10, 20, 30)
+```
+
+Output:
+
+```text id="r5t9y2"
+30
+60
+```
+
+This behaves like overloading.
+
+---
+
+# Example Comparison
+
+## Overriding
+
+```python id="u1i5o8"
+class A:
+    def show(self):
+        print("A")
+
+class B(A):
+    def show(self):
+        print("B")
+```
+
+Output:
+
+```text id="g7h3j6"
+B
+```
+
+---
+
+## Overloading Style
+
+```python id="l9k2m4"
+class Test:
+
+    def show(self, a=None):
+        if a:
+            print(a)
+        else:
+            print("No Argument")
+```
+
+Output:
+
+```text id="c8v1b5"
+No Argument
+10
+```
+
+---
+
+# Interview Answer
+
+### Method Overriding
+
+When a child class provides its own implementation of a method already defined in the parent class.
+
+```python id="s3d7f1"
+class Dog(Animal):
+
+    def sound(self):
+        print("Bark")
+```
+
+---
+
+### Method Overloading
+
+Defining multiple methods with the same name but different parameters.
+
+Python does not support true method overloading, but similar behavior can be achieved using:
+
+```python id="e6r2t8"
+default arguments
+*args
+```
+
+---
+
+# Memory Trick
+
+```text id="z4x8c2"
+Overriding
+=
+Parent → Child
+Replace Method
+
+Overloading
+=
+Same Method
+Different Parameters
+```
+
+### Quick Rule
+
+```text id="n1m5b9"
+Overriding → Inheritance
+
+Overloading → Arguments
+```
+
+These are among the most commonly asked OOP interview questions.

@@ -11,4 +11,4 @@ class student :
         self.name=name#instance variable
         self.marks=marks#instance variable  
     def average(self):#instance method
-        return self.marks/3
+        return self.marks/2
