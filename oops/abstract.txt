@@ -1,0 +1,76 @@
+In Python OOP, abstraction is generally classified into 2 types:
+
+Type	Description
+Partial Abstraction	Some methods are implemented, some are abstract
+Full Abstraction	All methods are abstract
+
+1. Partial Abstraction
+
+An abstract class contains:
+
+Abstract methods
+Normal methods
+Example
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+
+    @abstractmethod
+    def sound(self):
+        pass
+
+    def sleep(self):
+        print("Sleeping")
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Bark")
+
+d = Dog()
+
+d.sound()
+d.sleep()
+
+Output:
+
+Bark
+Sleeping
+
+Here:
+
+sound() → abstract
+sleep() → normal
+
+So this is Partial Abstraction.
+
+2. Full Abstraction
+
+All methods are abstract.
+
+Example
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+Every method is abstract.
+
+Child class:
+
+class Circle(Shape):
+
+    def area(self):
+        return 78.5
+
+    def perimeter(self):
+        return 31.4
+
+This is Full Abstraction.
