@@ -1,7 +1,6 @@
 class dog:#class
-    name = "tony"
-    age=5
+    def __init__(self,fullname):#constructor
+        self.name=fullname
+        print(fullname)#message
 
-d1=dog()#object of class dog
-print(d1.name)
-print(d1.age)
+d1=dog("Bud")#object
