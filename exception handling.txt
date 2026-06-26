@@ -1,0 +1,127 @@
+Exception Handling Blocks in Python
+
+Python provides 5 main blocks for exception handling:
+
+try
+except
+else
+finally
+raise
+1. try
+
+The try block contains the code that might cause an exception.
+
+try:
+    num = 10 / 0
+2. except
+
+The except block handles the exception.
+
+try:
+    num = 10 / 0
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+Output
+Cannot divide by zero
+3. else
+
+The else block executes only if no exception occurs.
+
+try:
+    num = 10 / 2
+
+except ZeroDivisionError:
+    print("Error")
+
+else:
+    print("Division Successful")
+Output
+Division Successful
+
+If an exception occurs, else is skipped.
+
+4. finally
+
+The finally block always executes, whether an exception occurs or not.
+
+try:
+    num = 10 / 0
+
+except ZeroDivisionError:
+    print("Cannot divide")
+
+finally:
+    print("Program Ended")
+Output
+Cannot divide
+Program Ended
+
+Another example:
+
+try:
+    num = 10 / 2
+
+except ZeroDivisionError:
+    print("Error")
+
+finally:
+    print("Program Ended")
+Output
+Program Ended
+5. raise
+
+raise is used to manually create (throw) an exception.
+
+age = -5
+
+if age < 0:
+    raise ValueError("Age cannot be negative")
+
+Output:
+
+ValueError: Age cannot be negative
+Complete Example
+try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+except ValueError:
+    print("Enter numbers only")
+
+else:
+    print("Result:", result)
+
+finally:
+    print("Program Finished")
+
+
+
+
+
+
+
+    | Exception               | Cause                                 | Example                         | Handled By                    |
+| ----------------------- | ------------------------------------- | ------------------------------- | ----------------------------- |
+| **NameError**           | Variable not defined                  | `print(x)`                      | `except NameError:`           |
+| **TypeError**           | Wrong data type                       | `10 + "20"`                     | `except TypeError:`           |
+| **ValueError**          | Correct type, wrong value             | `int("abc")`                    | `except ValueError:`          |
+| **IndexError**          | List/Tuple index out of range         | `lst[10]`                       | `except IndexError:`          |
+| **KeyError**            | Dictionary key not found              | `d["age"]`                      | `except KeyError:`            |
+| **AttributeError**      | Object has no attribute/method        | `obj.age`                       | `except AttributeError:`      |
+| **FileNotFoundError**   | File doesn't exist                    | `open("abc.txt","r")`           | `except FileNotFoundError:`   |
+| **ModuleNotFoundError** | Module not found                      | `import xyz`                    | `except ModuleNotFoundError:` |
+| **ImportError**         | Module exists but object doesn't      | `from math import abc`          | `except ImportError:`         |
+| **ZeroDivisionError**   | Divide by zero                        | `10/0`                          | `except ZeroDivisionError:`   |
+| **OverflowError**       | Number too large                      | `math.exp(1000)`                | `except OverflowError:`       |
+| **FloatingPointError**  | Floating-point operation error (rare) | Special floating-point settings | `except FloatingPointError:`  |
+| **ArithmeticError**     | Parent of arithmetic exceptions       | `10/0`                          | `except ArithmeticError:`     |
+| **Exception**           | Parent of most standard exceptions    | Any normal runtime error        | `except Exception:`           |
+| **BaseException**       | Root of all exceptions                | Includes `KeyboardInterrupt`    | `except BaseException:`       |
+
+
+
+
