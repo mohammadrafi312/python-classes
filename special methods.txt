@@ -1,0 +1,160 @@
+So why do we need __str__()?
+Because __str__() is used when you want to print the entire object, not each attribute one by one.
+Real-life analogy
+
+Think of a student ID card.
+
+s.name → Looking only at the student's name.
+s.marks → Looking only at the student's marks.
+print(s) with __str__() → Looking at the entire ID card that shows all the important details in one place.
+class Student:
+    def __init__(self,name,age,department):
+        self.name=name
+        self.age=age
+        self.department=department
+        
+    def __str__(self):
+        return f"student name:{self.name} student age:{self.age} student dept:{self.department}"
+    
+s1=Student("rafi",20,"CSE")
+print(s1)
+
+
+This is one of the most common Python interview questions.
+
+__str__() vs __repr__()
+__str__()	__repr__()
+User-friendly representation	Developer/debug representation
+Called by print(obj) and str(obj)	Called by repr(obj) and when objects appear inside lists, tuples, etc.
+Should be easy to read	Should be detailed and, if possible, unambiguous
+Optional	Recommended for every custom class
+class ClassName:
+    def __repr__(self):
+        return "Representation"
+
+
+
+
+
+
+
+
+
+
+        __len__() in Python
+
+__len__() is a magic (dunder) method that tells Python what value to return when len() is called on an object.
+
+Without __len__(), calling len() on your custom object raises an error.
+
+Syntax
+class ClassName:
+    def __len__(self):
+        return value
+It must return an integer (int).
+Usually returns 0 or a positive integer.
+Without __len__()
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+s = Student("Rafi")
+
+print(len(s))
+Output
+TypeError: object of type 'Student' has no len()
+With __len__()
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+    def __len__(self):
+        return len(self.name)
+
+s = Student("Rafi")
+
+print(len(s))
+Output
+4
+
+Python internally calls:
+
+s.__len__()
+
+
+
+
+class Student:
+    def __init__(self,name,age,department):
+        self.name=name
+        self.age=age
+        self.department=department
+        
+    def __len__(self):
+        return len(self.name)
+    
+s1=Student("rafi",20,"CSE")
+print(len(s1))
+
+__add__() in Python
+
+__add__() is a magic (dunder) method that defines what should happen when you use the + operator with objects of your custom class.
+
+Without __add__(), Python doesn't know how to add two custom objects.
+
+Syntax
+class ClassName:
+    def __add__(self, other):
+        # Code
+self → First object (left side of +)
+other → Second object (right side of +)
+Without __add__()
+class Student:
+    def __init__(self, marks):
+        self.marks = marks
+
+s1 = Student(90)
+s2 = Student(80)
+
+print(s1 + s2)
+Output
+TypeError: unsupported operand type(s) for +: 'Student' and 'Student'
+
+Python doesn't know how to add two Student objects.
+
+With __add__()
+class Student:
+    def __init__(self, marks):
+        self.marks = marks
+
+    def __add__(self, other):
+        return self.marks + other.marks
+
+s1 = Student(90)
+s2 = Student(80)
+
+print(s1 + s2)
+Output
+170
+
+Python internally does:
+
+s1.__add__(s2)
+__add__
+class Student:
+    def __init__(self,age):
+        
+        self.age=age
+
+    def __add__(self,other):
+        return self.age+other.age
+    
+s1=Student(20)
+s2=Student(30)
+print(s1+s2)
+
+
+
+
+
+
